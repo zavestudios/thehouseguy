@@ -1,0 +1,126 @@
+<main role="main" class="container">
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <div class='row'>
+        <div class='col-md-8'>
+          <h3 class="font-italic">
+          <%= @property["StreetNumberNumeric"] + " " + @property["StreetDirSuffix"] + " " + @property["StreetName"] + " " + @property["City"].titleize +
+            ", " + @property["StateOrProvince"] %>
+          </h3>
+        </div>
+        <div class='col-md-4'>
+          <h4 class="card-title float-md-right"><%= number_to_currency(@property["ListPrice"], precision: 0) %></h4>
+        </div>
+      </div>
+      <hr/><br/>
+      <div class="blog-post">
+        <div class='row'>
+          <div class='col-md-8'>
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+              <ol class="carousel-indicators">
+                <% @property["photos"].each_with_index do |slide, index| %>
+                   <li data-target="#myCarousel" data-slide-to="<%= index %>" class="<%= index == 0 ? 'active' : '' %>" ></li>
+                 <% end %>
+              </ol>
+              <div class="carousel-inner">
+                <% @property["photos"].each_with_index do |photo, index| %>
+                  <div class="<%= index == 0 ? 'carousel-item active' : 'carousel-item' %> squish-image" style='background-color: white;'>
+                    <div style="height: 450px;text-align: center;">
+                      <span style="display: inline-block; height: 100%;vertical-align: middle;"></span>
+                      <%= image_tag photo["MediaURL"], style: 'vertical-align: middle; max-height: 450px;' %>
+                    </div>
+                    <div class="container">
+                      <div class="carousel-caption <%= text_style index %>">
+                        <h1><%#= index %></h1>
+                        <p>
+                          <%#= raw post.body.truncate(100) %>
+                        </p>
+                        <p>
+                          <%#= link_to 'Read more...', post_path(post.id), class: "btn btn-lg btn-primary" %>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+                <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+            </div>
+          </div>
+          <div class='col-md-4'>
+            <div class="card-body" style='padding: 0px;'>
+              <h5>Quick Stats</h5><hr/>
+              <div class="row">
+                <div class='col-md-12'>
+                  <%= @property["BathroomsTotalInteger"] %> Bath(s)
+                </div>
+              </div>
+              <div class="row">
+                <div class='col-md-12'>
+                  <%= @property["BedroomsTotal"] %> Bedrooms(s)
+                </div>
+              </div>
+              <div class="row">
+                <div class='col-md-12'>
+                  <%= @property["LivingArea"] %> Sq.Ft.
+                  <%= @property["CumulativeDaysOnMarket"] %>
+                </div>
+              </div>
+              <div class="row">
+                <div class='col-md-12'>
+                  Days on the market: <%= @property["CumulativeDaysOnMarket"] %>
+                </div>
+              </div>
+              <div class="row">
+                <div class='col-md-12'>
+                  Year built: <%= @property["YearBuilt"] %>
+                </div>
+              </div>
+              <br/>
+              <h5>Listing Agent</h5>
+              <hr/>
+              <div class='row'>
+                <div class='col-md-12'>
+                  <%= @property["ListAgentFirstName"] %> <%= @property["ListAgentLastName"] %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br/>
+        <div class='row'>
+          <div class='col-md-12'>
+            <p class="card-text"><%= @property["PublicRemarks"] %></p>
+          </div>
+        </div>
+        <br/>
+        <div class='row'>
+          <div class='col-md-4'>
+            <%= render 'exterior_features' %>
+          </div>
+          <div class='col-md-4'>
+            <%= render 'interior_features' %>
+          </div>
+          <div class='col-md-4'>
+            <%= render 'property_features' %>
+          </div>
+        </div>
+        <br/>
+        <div class='row'>
+          <div class='col-md-12'>
+            <h5>Included</h5>
+            <hr/>
+            <p><%= @property["Inclusions"] %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr/>
+</main><!-- /.container -->

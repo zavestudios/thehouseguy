@@ -1,0 +1,92 @@
+<h5>Exterior Features</h5>
+<hr/>
+<div class='row'>
+  <div class='col-md-12'>
+    <p>Attached Garage <%= @property["AttachedGarageYN"] %></p>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-md-12'>
+    <p>Fencing: <%= @property["FenceYN"] == '1' ? 
+    "Yes<ul class='list-group'><li class='list-group-item bg-light p-2 border-0'>
+       Type: #{exterior_features(@property["Fencing"])}
+      </li></ul>".html_safe 
+    : 
+    'No' 
+    %></p>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-md-12'>
+    <p>Garage Spaces <%= @property["GarageSpaces"] %></p>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-md-12'>
+    Lot Features: <%= exterior_features(@property["LotFeatures"]) %></p>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-md-12'>
+    Lot Size Source <%= @property["LotSizeSource"] %></p>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-md-12'>
+    Lot Size Units <%= @property["LotSizeUnits"] %></p>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-md-12'>
+    Parking Total <%= @property["ParkingTotal"] %></p>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-md-12'>
+    <p>Patio: <%= @property["PatioYN"].present? ? 
+    "Yes<ul class='list-group'><li class='list-group-item bg-light p-2 border-0'>
+       Patio Features: #{@property["PatioAndPorchFeatures"]}
+      </li></ul>".html_safe 
+    : 
+    'No' 
+    %></p>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-md-12'>
+    <p>Private Pool: <%= @property["PoolPrivateYN"] == 0 ? 
+    "Yes<ul class='list-group'><li class='list-group-item bg-light p-2 border-0'>
+       Pool Features: #{@property["PoolFeatures"]}
+      </li></ul>".html_safe 
+    : 
+    'No' 
+    %></p>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-md-12'>
+    Property Attached <%= @property["PropertyAttachedYN"] %></p>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-md-12'>
+    <p>Spa: <%= @property["SpaYN"] == 0 ? 
+    "Yes<ul class='list-group'><li class='list-group-item bg-light p-2 border-0'>
+       Spa Features: #{@property["SpaFeatures"]}
+      </li></ul>".html_safe 
+    : 
+    'No' 
+    %></p>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-md-12'>
+    <p>View: <%= @property["ViewYN"] == 0 ? 
+    "Yes<ul class='list-group'><li class='list-group-item bg-light p-2 border-0'>
+       View of: #{@property["View"]}
+      </li></ul>".html_safe 
+    : 
+    'No' 
+    %></p>
+  </div>
+</div>

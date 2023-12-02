@@ -1,0 +1,56 @@
+<main role="main" class="container">
+  <%= form_tag search_posts_path, method: :get do %>
+    <div class="form-group">
+      <div class="input-group">
+        <%= text_field_tag :query, params[:query], class: 'form-control', placeholder: 'Search Blog Posts...' %>
+        <%= submit_tag "Search", name: nil, class: 'btn btn-primary' %>
+      </div>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class="col-md-8 blog-main">
+      <h3 class="pb-3 mb-4 font-italic border-bottom">
+        From the Web Blog
+      </h3>
+        <div class="blog-post">
+          <% if @post.post_image.nil? %>
+            <%= image_tag @post.post_image, class: "img-fluid my-4" %>
+          <% end %>
+          <h2 class="blog-post-title"><%= @post.title %></h2>
+          <p class="blog-post-meta"><%= Date.parse(@post.created_at.to_s).strftime(("%B %e %Y")) %> by <a href="#">Mark</a></p>
+          <%= sanitize @post.body %>
+        </div><!-- /.blog-post -->
+      <nav class="blog-pagination">
+        <a class="btn btn-outline-primary" href="#">Older</a>
+        <a class="btn btn-outline-secondary disabled" href="#">Newer</a>
+      </nav>
+    </div><!-- /.blog-main -->
+
+    <aside class="col-md-4 blog-sidebar">
+      <div class="p-3 mb-3 bg-light rounded">
+        <h4 class="font-italic">About</h4>
+        <p class="mb-0">Welcome to The House Guy Blog. We explore some of the real estate questions that people care most about.</p>
+      </div>
+
+      <div class="p-3">
+        <h4 class="font-italic">Archives</h4>
+        <ol class="list-unstyled mb-0">
+          <% @archives.each do |a| %>
+            <li><a href="<%= post_path(a.id) %>"><%= a.title %></a></li>
+          <% end %>
+        </ol>
+      </div>
+
+      <div class="p-3">
+        <h4 class="font-italic">Elsewhere</h4>
+        <ol class="list-unstyled">
+          <li><a href="#">GitHub</a></li>
+          <li><a href="#">Twitter</a></li>
+          <li><a href="#">Facebook</a></li>
+        </ol>
+      </div>
+    </aside><!-- /.blog-sidebar -->
+
+  </div><!-- /.row -->
+
+</main><!-- /.container -->

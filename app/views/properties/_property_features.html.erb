@@ -1,0 +1,52 @@
+<h5>Property Features</h5>
+<hr/>
+<div class='row'>
+  <div class='col-md-12'>
+    <p>Additional Parcels: <%= @property["AdditionalParcelsYN"] == '0' ? 'No' : 'Yes' %></p>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-md-12'>
+    <p>Association: <%= @property["AssociationYN"] == '1' ? 
+    "Yes<ul class='list-group'><li class='list-group-item bg-light p-2 border-0'>
+       Association Fees: #{@property["AssociationFee"]}
+      </li></ul>".html_safe 
+    : 
+    'No' 
+    %></p>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-md-12'>
+    <p>Community Features: <%= @property["CommunityFeatures"] %></p>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-md-12'>
+    <p>Lease Considered: <%= @property["LeaseConsideredYN"] == 1 ? 
+    "Yes"
+    : 
+    'No' 
+    %></p>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-md-12'>
+    <p>Property Sub Type: <%= @property["PropertySubType"] %></p>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-md-12'>
+    <p>Sewer: <%= @property["Sewer"] %></p>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-md-12'>
+    <p>Special Listing Conditions: <%= "#{property_features(@property["SpecialListingConditions"])}" %></p>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-md-12'>
+    <p>Water Source: <%= @property["WaterSource"] %></p>
+  </div>
+</div>

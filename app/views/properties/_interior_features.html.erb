@@ -1,0 +1,93 @@
+<h5>Interior Features</h5>
+<hr>
+<div class="row">
+  <div class='col-md-12'>
+    <p>Full Bathrooms: <%= @property["BathroomsFull"] %></p>
+  </div>
+</div>
+<div class="row">
+  <div class='col-md-12'>
+    <p>Common Walls: <%= @property["CommonWalls"] == 'NCW' ? 
+    'No Common Walls' 
+    : 
+    'Common Walls' 
+    %></p>
+  </div>
+</div>
+<div class="row">
+  <div class='col-md-12'>
+    <p>Cooling: <%= @property["CoolingYN"].present? ? 
+    "Yes<ul class='list-group'><li class='list-group-item bg-light p-2 border-0'>
+       Type: #{interior_features(@property["Cooling"])}
+      </li></ul>".html_safe 
+    : 
+    'No' 
+    %></p>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-md-12'>
+    <p>Fireplace: <%= @property["FireplaceYN"] == 0 ? 
+    "Yes<ul class='list-group'><li class='list-group-item bg-light p-2 border-0'>
+       Features: #{@property["FireplaceFeatures"]}
+      </li></ul>".html_safe 
+    : 
+    'No' 
+    %></p>
+  </div>
+</div>
+<div class="row">
+  <div class='col-md-12'>
+    <p>Heating: <%= @property["HeatingYN"].present?? 
+    "Yes<ul class='list-group'><li class='list-group-item bg-light p-2 border-0'>
+       Type: #{interior_features(@property["Heating"])}
+      </li></ul>".html_safe 
+    : 
+    'No' 
+    %></p>
+  </div>
+</div>
+<div class="row">
+  <div class='col-md-12'>
+    <p><%= @property["InteriorFeatures"].present? ? 
+    "<div class='row'>
+      <div class='col-md-12 bg-light p-2'>
+        Interior Features: #{@property["InteriorFeatures"]}
+      </div>
+    </div>".html_safe 
+    : 
+    '' 
+    %></p>
+  </div>
+</div>
+<div class="row">
+  <div class='col-md-12'>
+    <p>Laundry Features: <%= @property["LaundryYN"].present?? 
+    "<ul class='list-group'><li class='list-group-item bg-light p-2 border-0'>
+       #{interior_features(@property["LaundryFeatures"])}
+      </li></ul>".html_safe 
+    : 
+    'No' 
+    %></p>
+  </div>
+</div>
+<div class="row">
+  <div class='col-md-12'>
+    <p>Levels: <%= @property["Levels"] %></p>
+  </div>
+</div>
+<div class="row">
+  <div class='col-md-12'>
+    <p>Main Level Bathrooms: <%= @property["MainLevelBathrooms"] %></p>
+  </div>
+</div>
+<div class="row">
+  <div class='col-md-12'>
+    <p>Main Level Bedrooms: <%= @property["MainLevelBedrooms"] %></p>
+  </div>
+</div>
+<div class="row">
+  <div class='col-md-12'>
+    <p>Room Type: <%= "#{interior_features(@property["RoomType"])}" %></p>
+  </div>
+</div>

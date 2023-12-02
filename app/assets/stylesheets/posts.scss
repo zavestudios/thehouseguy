@@ -1,0 +1,11 @@
+// Place all the styles related to the Posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#first-post-jumbotron {
+  background-image: url(‘<%= url_for(@last_five[0].carousel_image) if @last_five[0].carousel_image.attached?’) %>);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+

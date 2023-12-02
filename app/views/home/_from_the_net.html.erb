@@ -1,0 +1,19 @@
+<div class="py-2 mt-4">
+    <div class="row">
+      <% @latest_rss_entries.each do |rss| %>
+      <div class="col-md-6">
+        <div class="card flex-md-row mb-4 box-shadow h-md-250">
+          <div class="card-body d-flex flex-column align-items-start">
+            <strong class="d-inline-block mb-2 text-primary">World</strong>
+            <h3 class="mb-0">
+              <a class="text-dark" href="<%= feed_entry_path(rss.feed_id, rss.id) %>"><%= rss.title %></a>
+            </h3>
+            <div class="mb-1 text-muted"><%= Date.parse(rss.created_at.to_s).strftime(("%B %e %Y")) %></div>
+            <p class="card-text mb-auto">sanitize rss.content.truncate(100)</p>
+            <a href="<%= post_path(rss.id) %>">Continue reading</a>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+</div>

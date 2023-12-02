@@ -1,0 +1,22 @@
+<div class="py-2 mt-4">
+    <div class="row">
+      <% @last_two_posts.each do |p| %>
+      <div class="col-md-6">
+        <div class="card flex-md-row mb-4 box-shadow h-md-250">
+          <div class="card-body d-flex flex-column align-items-start">
+            <strong class="d-inline-block mb-2 text-primary">World</strong>
+            <h3 class="mb-0">
+              <a class="text-dark" href="<%= post_path(p.id) %>"><%= p.title %></a>
+            </h3>
+            <div class="mb-1 text-muted"><%= Date.parse(p.created_at.to_s).strftime(("%B %e %Y")) %></div>
+            <p class="card-text mb-auto"><%= sanitize p.body.truncate(100) %></p>
+            <a href="<%= post_path(p.id) %>">Continue reading</a>
+          </div>
+          <div class="cropped-image">
+            <%= image_tag p.thumbnail if p.thumbnail.attached? %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+</div>
