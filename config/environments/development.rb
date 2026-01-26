@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -58,9 +60,9 @@ Rails.application.configure do
 
   # Allow host authorization for local dev/proxies.
   config.hosts.clear
-  config.hosts << "www.example.com"
-  config.hosts << "localhost"
-  config.hosts << "localhost:3000"
-  config.hosts << "127.0.0.1"
-  config.hosts << "127.0.0.1:3000"
+  config.hosts << 'www.example.com'
+  config.hosts << 'localhost'
+  config.hosts << 'localhost:3000'
+  config.hosts << '127.0.0.1'
+  config.hosts << '127.0.0.1:3000'
 end

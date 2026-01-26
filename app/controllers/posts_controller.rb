@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :set_archives, only: [:index, :show]
-  #before_action :authorize
+  before_action :set_post, only: %i[show edit update destroy]
+  before_action :set_archives, only: %i[index show]
+  # before_action :authorize
 
   # GET /posts
   # GET /posts.json
@@ -12,8 +14,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1
   # GET /posts/1.json
-  def show
-  end
+  def show; end
 
   # GET /posts/new
   def new
@@ -21,8 +22,7 @@ class PostsController < ApplicationController
   end
 
   # GET /posts/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /posts
   # POST /posts.json
@@ -32,17 +32,17 @@ class PostsController < ApplicationController
     if @post.process_original_image(params[:post][:original_image])
       respond_to do |format|
         if @post.save
-          flash[:success] = "Post successfully created."
+          flash[:success] = 'Post successfully created.'
           format.html { redirect_to @post }
           format.json { render :show, status: :created, location: @post }
         else
-          flash[:alert] = "Something is seriously wrong."
+          flash[:alert] = 'Something is seriously wrong.'
           format.html { render :new }
           format.json { render json: @post.errors, status: :unprocessable_entity }
         end
       end
     else
-      flash[:alert] = "File upload must be an image"
+      flash[:alert] = 'File upload must be an image'
       render :new
     end
   end
@@ -74,31 +74,31 @@ class PostsController < ApplicationController
   def search
     @search_results = Post.text_search(params[:query])
     render :search_results
-    
+
     # respond_to do |format|
     #   if @post.update(post_params)
-        # format.html { render 'search_results' }
-        # format.json { render :show, status: :ok, location: @post }
-      # else
-        # format.html { render :search_results }
-        # format.json { render json: @post.errors, status: :unprocessable_entity }
-      # end
+    # format.html { render 'search_results' }
+    # format.json { render :show, status: :ok, location: @post }
+    # else
+    # format.html { render :search_results }
+    # format.json { render json: @post.errors, status: :unprocessable_entity }
+    # end
     # end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
 
-    def set_archives
-      @archives = Post.select('id, title').order('created_at DESC').limit(12)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_post
+    @post = Post.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def post_params
-      params.require(:post).permit(:title, :body, :original_image, :thumbnail)
-    end
+  def set_archives
+    @archives = Post.select('id, title').order('created_at DESC').limit(12)
+  end
 
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def post_params
+    params.require(:post).permit(:title, :body, :original_image, :thumbnail)
+  end
 end

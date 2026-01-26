@@ -1,5 +1,6 @@
-module WelcomeHelper
+# frozen_string_literal: true
 
+module WelcomeHelper
   def text_style(index)
     case index
     when 0
@@ -10,5 +11,4 @@ module WelcomeHelper
       ''
     end
   end
-
 end

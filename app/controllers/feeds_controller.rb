@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class FeedsController < ApplicationController
-  before_action :set_feed, only: [:show, :edit, :update, :destroy]
+  before_action :set_feed, only: %i[show edit update destroy]
 
   # GET /feeds
   # GET /feeds.json
@@ -9,8 +11,7 @@ class FeedsController < ApplicationController
 
   # GET /feeds/1
   # GET /feeds/1.json
-  def show
-  end
+  def show; end
 
   # GET /feeds/new
   def new
@@ -18,8 +19,7 @@ class FeedsController < ApplicationController
   end
 
   # GET /feeds/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /feeds
   # POST /feeds.json
@@ -62,13 +62,14 @@ class FeedsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_feed
-      @feed = Feed.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def feed_params
-      params.require(:feed).permit(:name, :url, :description)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_feed
+    @feed = Feed.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def feed_params
+    params.require(:feed).permit(:name, :url, :description)
+  end
 end

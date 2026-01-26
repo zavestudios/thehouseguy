@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class HomeController < ApplicationController
   def index
     @last_two_posts = Post.order('created_at DESC').limit(2)

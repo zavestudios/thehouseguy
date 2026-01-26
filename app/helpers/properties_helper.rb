@@ -1,5 +1,6 @@
-module PropertiesHelper
+# frozen_string_literal: true
 
+module PropertiesHelper
   def exterior_features(feature)
     {
       'BY' => 'Backyard',
@@ -9,7 +10,7 @@ module PropertiesHelper
     }.each do |k, v|
       feature.gsub!(k, v)
     end
-    return feature
+    feature
   end
 
   def interior_features(feature)
@@ -27,7 +28,7 @@ module PropertiesHelper
     }.each do |k, v|
       feature.gsub!(k, v)
     end
-    return feature
+    feature
   end
 
   def property_features(feature)
@@ -42,6 +43,6 @@ module PropertiesHelper
     }.each do |k, v|
       feature.gsub!(k, v)
     end
-    return feature
+    feature
   end
 end
