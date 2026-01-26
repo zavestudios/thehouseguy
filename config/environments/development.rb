@@ -55,4 +55,12 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  # Allow host authorization for local dev/proxies.
+  config.hosts.clear
+  config.hosts << "www.example.com"
+  config.hosts << "localhost"
+  config.hosts << "localhost:3000"
+  config.hosts << "127.0.0.1"
+  config.hosts << "127.0.0.1:3000"
 end

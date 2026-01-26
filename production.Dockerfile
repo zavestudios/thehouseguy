@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-ARG RUBY_VERSION=3.2.2
+ARG RUBY_VERSION=3.3.2
 
 FROM ruby:${RUBY_VERSION}-slim as base
 
@@ -28,7 +28,10 @@ RUN --mount=type=cache,target=/var/cache/apt \
   && apt-get install -yq --no-install-recommends \
     build-essential \
     gnupg2 \
-    libpq-dev
+    libpq-dev \
+    libglib2.0-0 \
+    libglib2.0-dev \
+    nodejs
 
 RUN gem update --system && gem install bundler
 

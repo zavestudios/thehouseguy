@@ -1,6 +1,8 @@
 class RetsWebService
 
   def get_homepage_props
+    return [] if ENV.fetch("USE_RETS", "false").downcase != "true"
+
     metadata_cache = Rets::Metadata::FileCache.new("/tmp/metadata")
     image = ''
 

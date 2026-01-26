@@ -2,12 +2,17 @@ class PropertiesController < ApplicationController
   before_action :set_property, only: [:show]
 
   def show
-
+    return render plain: "Property provider disabled", status: :service_unavailable if @property.nil?
   end
 
   private
 
     def set_property
+      if ENV.fetch("USE_RETS", "false").downcase != "true"
+        @property = nil
+        return
+      end
+
       metadata_cache = Rets::Metadata::FileCache.new("/tmp/metadata")
 
       client = Rets::Client.new({

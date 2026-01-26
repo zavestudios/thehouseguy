@@ -10,6 +10,11 @@ services:
     env_file:
       - .env
     environment:
+      - PGHOST=db
+      - PGUSER=postgres
+      - PGPASSWORD=changeme
+      - PGDATABASE=thehouseguy_dev
+      - USE_RETS=false
       - HISTFILE=/usr/src/app/log/.bash_history 
     depends_on:
       db:
@@ -17,11 +22,11 @@ services:
       redis:
         condition: service_started
   db:
-    image: postgres:15
-    ports:
-      - "5432:5432"
+    image: postgres:17
     environment:
+      - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=changeme
+      - POSTGRES_DB=thehouseguy_dev
     volumes:
       - pg_data:/var/lib/postgresql/data
     healthcheck:

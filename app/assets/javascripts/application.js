@@ -11,11 +11,7 @@
 // about supported directives.
 //
 // Requirements for bootstrap-rubygem
-//= require turbolinks
 //= require jquery3
 //= require rails-ujs
-//= require popper
-//= require bootstrap-sprockets
-//= require bootstrap
 //= require trix
 //= require_tree .

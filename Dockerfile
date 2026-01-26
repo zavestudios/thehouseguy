@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-ARG RUBY_VERSION=3.2.2
+ARG RUBY_VERSION=3.3.2
 
 FROM ruby:${RUBY_VERSION}-slim
 
@@ -19,7 +19,10 @@ RUN --mount=type=cache,target=/var/cache/apt \
     libpq-dev \
     postgresql-client \
     libvips \
-    curl
+    libglib2.0-0 \
+    libglib2.0-dev \
+    curl \
+    nodejs
 
 ENV LANG=C.UTF-8 \
   BUNDLE_JOBS=4 \
@@ -28,8 +31,6 @@ ENV LANG=C.UTF-8 \
 RUN gem update --system && gem install bundler
 
 WORKDIR /usr/src/app
-
-ENTRYPOINT ["./bin/docker-entrypoint.sh"]
 
 EXPOSE 3000
 

@@ -2,21 +2,22 @@ default: &default
   adapter: postgresql
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
-  username: xlopez
-  password:
+  host: <%= ENV.fetch("PGHOST", "db") %>
+  username: <%= ENV.fetch("PGUSER", "postgres") %>
+  password: <%= ENV.fetch("PGPASSWORD", "") %>
+  database: <%= ENV.fetch("PGDATABASE", "thehouseguy_dev") %>
 
 development:
   <<: *default
-  database: thehouseguy_dev
 
 test:
   <<: *default
-  database: thehouseguy_test
+  database: <%= ENV.fetch("PGDATABASE_TEST", "thehouseguy_test") %>
 
 staging:
   <<: *default
-  database: thehouseguy_staging  
+  database: <%= ENV.fetch("PGDATABASE_STAGING", "thehouseguy_staging") %>
 
 production:
   <<: *default
-  database: thehouseguy_production
+  database: <%= ENV.fetch("PGDATABASE_PRODUCTION", "thehouseguy_production") %>
