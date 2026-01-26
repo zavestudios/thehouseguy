@@ -1,5 +1,12 @@
 <main role="main" class="container">
-  <div class="row">
+<% if ENV.fetch("USE_RETS", "false").downcase != "true" %>
+  <div class="alert alert-warning mt-3">
+    Property provider disabled.
+  </div>
+  <% return %>
+<% end %>
+
+<div class="row">
     <div class="col-md-12 blog-main">
       <div class='row'>
         <div class='col-md-8'>
