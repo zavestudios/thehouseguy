@@ -16,59 +16,69 @@
 </div>
 <div class="row">
   <div class='col-md-12'>
-    <p>Cooling: <%= @property["CoolingYN"].present? ? 
-    "Yes<ul class='list-group'><li class='list-group-item bg-light p-2 border-0'>
-       Type: #{interior_features(@property["Cooling"])}
-      </li></ul>".html_safe 
-    : 
-    'No' 
-    %></p>
+    <% if @property["CoolingYN"].present? %>
+      <p>Cooling: Yes</p>
+      <ul class='list-group'>
+        <li class='list-group-item bg-light p-2 border-0'>
+          Type: <%= h interior_features(@property["Cooling"]) %>
+        </li>
+      </ul>
+    <% else %>
+      <p>Cooling: No</p>
+    <% end %>
   </div>
 </div>
 <div class='row'>
   <div class='col-md-12'>
-    <p>Fireplace: <%= @property["FireplaceYN"] == 0 ? 
-    "Yes<ul class='list-group'><li class='list-group-item bg-light p-2 border-0'>
-       Features: #{@property["FireplaceFeatures"]}
-      </li></ul>".html_safe 
-    : 
-    'No' 
-    %></p>
+    <% if @property["FireplaceYN"] == 0 %>
+      <p>Fireplace: Yes</p>
+      <ul class='list-group'>
+        <li class='list-group-item bg-light p-2 border-0'>
+          Features: <%= h @property["FireplaceFeatures"] %>
+        </li>
+      </ul>
+    <% else %>
+      <p>Fireplace: No</p>
+    <% end %>
   </div>
 </div>
 <div class="row">
   <div class='col-md-12'>
-    <p>Heating: <%= @property["HeatingYN"].present?? 
-    "Yes<ul class='list-group'><li class='list-group-item bg-light p-2 border-0'>
-       Type: #{interior_features(@property["Heating"])}
-      </li></ul>".html_safe 
-    : 
-    'No' 
-    %></p>
+    <% if @property["HeatingYN"].present? %>
+      <p>Heating: Yes</p>
+      <ul class='list-group'>
+        <li class='list-group-item bg-light p-2 border-0'>
+          Type: <%= h interior_features(@property["Heating"]) %>
+        </li>
+      </ul>
+    <% else %>
+      <p>Heating: No</p>
+    <% end %>
   </div>
 </div>
 <div class="row">
   <div class='col-md-12'>
-    <p><%= @property["InteriorFeatures"].present? ? 
-    "<div class='row'>
-      <div class='col-md-12 bg-light p-2'>
-        Interior Features: #{@property["InteriorFeatures"]}
+    <% if @property["InteriorFeatures"].present? %>
+      <div class='row'>
+        <div class='col-md-12 bg-light p-2'>
+          Interior Features: <%= h @property["InteriorFeatures"] %>
+        </div>
       </div>
-    </div>".html_safe 
-    : 
-    '' 
-    %></p>
+    <% end %>
   </div>
 </div>
 <div class="row">
   <div class='col-md-12'>
-    <p>Laundry Features: <%= @property["LaundryYN"].present?? 
-    "<ul class='list-group'><li class='list-group-item bg-light p-2 border-0'>
-       #{interior_features(@property["LaundryFeatures"])}
-      </li></ul>".html_safe 
-    : 
-    'No' 
-    %></p>
+    <% if @property["LaundryYN"].present? %>
+      <p>Laundry Features:</p>
+      <ul class='list-group'>
+        <li class='list-group-item bg-light p-2 border-0'>
+          <%= h interior_features(@property["LaundryFeatures"]) %>
+        </li>
+      </ul>
+    <% else %>
+      <p>Laundry Features: No</p>
+    <% end %>
   </div>
 </div>
 <div class="row">
@@ -88,6 +98,6 @@
 </div>
 <div class="row">
   <div class='col-md-12'>
-    <p>Room Type: <%= "#{interior_features(@property["RoomType"])}" %></p>
+    <p>Room Type: <%= h interior_features(@property["RoomType"]) %></p>
   </div>
 </div>

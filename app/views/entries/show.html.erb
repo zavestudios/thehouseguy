@@ -1,5 +1,12 @@
 <div class="container">
-  <h3><%= link_to @entry.title, @entry.url %></h3>
+  <% safe_url = safe_entry_url(@entry) %>
+  <h3>
+    <% if safe_url %>
+      <%= link_to @entry.title, safe_url %>
+    <% else %>
+      <%= h @entry.title %>
+    <% end %>
+  </h3>
   <i>published on <%= @entry.published %> by <%= @entry.author %></i>
   <p>
     <%= sanitize(@entry.content) %>

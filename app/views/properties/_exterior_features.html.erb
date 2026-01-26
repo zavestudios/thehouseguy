@@ -7,13 +7,16 @@
 </div>
 <div class='row'>
   <div class='col-md-12'>
-    <p>Fencing: <%= @property["FenceYN"] == '1' ? 
-    "Yes<ul class='list-group'><li class='list-group-item bg-light p-2 border-0'>
-       Type: #{exterior_features(@property["Fencing"])}
-      </li></ul>".html_safe 
-    : 
-    'No' 
-    %></p>
+    <% if @property["FenceYN"] == '1' %>
+      <p>Fencing: Yes</p>
+      <ul class='list-group'>
+        <li class='list-group-item bg-light p-2 border-0'>
+          Type: <%= h exterior_features(@property["Fencing"]) %>
+        </li>
+      </ul>
+    <% else %>
+      <p>Fencing: No</p>
+    <% end %>
   </div>
 </div>
 <div class='row'>
@@ -43,24 +46,30 @@
 </div>
 <div class='row'>
   <div class='col-md-12'>
-    <p>Patio: <%= @property["PatioYN"].present? ? 
-    "Yes<ul class='list-group'><li class='list-group-item bg-light p-2 border-0'>
-       Patio Features: #{@property["PatioAndPorchFeatures"]}
-      </li></ul>".html_safe 
-    : 
-    'No' 
-    %></p>
+    <% if @property["PatioYN"].present? %>
+      <p>Patio: Yes</p>
+      <ul class='list-group'>
+        <li class='list-group-item bg-light p-2 border-0'>
+          Patio Features: <%= h @property["PatioAndPorchFeatures"] %>
+        </li>
+      </ul>
+    <% else %>
+      <p>Patio: No</p>
+    <% end %>
   </div>
 </div>
 <div class='row'>
   <div class='col-md-12'>
-    <p>Private Pool: <%= @property["PoolPrivateYN"] == 0 ? 
-    "Yes<ul class='list-group'><li class='list-group-item bg-light p-2 border-0'>
-       Pool Features: #{@property["PoolFeatures"]}
-      </li></ul>".html_safe 
-    : 
-    'No' 
-    %></p>
+    <% if @property["PoolPrivateYN"] == 0 %>
+      <p>Private Pool: Yes</p>
+      <ul class='list-group'>
+        <li class='list-group-item bg-light p-2 border-0'>
+          Pool Features: <%= h @property["PoolFeatures"] %>
+        </li>
+      </ul>
+    <% else %>
+      <p>Private Pool: No</p>
+    <% end %>
   </div>
 </div>
 <div class='row'>
@@ -70,23 +79,29 @@
 </div>
 <div class='row'>
   <div class='col-md-12'>
-    <p>Spa: <%= @property["SpaYN"] == 0 ? 
-    "Yes<ul class='list-group'><li class='list-group-item bg-light p-2 border-0'>
-       Spa Features: #{@property["SpaFeatures"]}
-      </li></ul>".html_safe 
-    : 
-    'No' 
-    %></p>
+    <% if @property["SpaYN"] == 0 %>
+      <p>Spa: Yes</p>
+      <ul class='list-group'>
+        <li class='list-group-item bg-light p-2 border-0'>
+          Spa Features: <%= h @property["SpaFeatures"] %>
+        </li>
+      </ul>
+    <% else %>
+      <p>Spa: No</p>
+    <% end %>
   </div>
 </div>
 <div class='row'>
   <div class='col-md-12'>
-    <p>View: <%= @property["ViewYN"] == 0 ? 
-    "Yes<ul class='list-group'><li class='list-group-item bg-light p-2 border-0'>
-       View of: #{@property["View"]}
-      </li></ul>".html_safe 
-    : 
-    'No' 
-    %></p>
+    <% if @property["ViewYN"] == 0 %>
+      <p>View: Yes</p>
+      <ul class='list-group'>
+        <li class='list-group-item bg-light p-2 border-0'>
+          View of: <%= h @property["View"] %>
+        </li>
+      </ul>
+    <% else %>
+      <p>View: No</p>
+    <% end %>
   </div>
 </div>

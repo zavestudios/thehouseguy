@@ -7,13 +7,16 @@
 </div>
 <div class='row'>
   <div class='col-md-12'>
-    <p>Association: <%= @property["AssociationYN"] == '1' ? 
-    "Yes<ul class='list-group'><li class='list-group-item bg-light p-2 border-0'>
-       Association Fees: #{@property["AssociationFee"]}
-      </li></ul>".html_safe 
-    : 
-    'No' 
-    %></p>
+    <% if @property["AssociationYN"] == '1' %>
+      <p>Association: Yes</p>
+      <ul class='list-group'>
+        <li class='list-group-item bg-light p-2 border-0'>
+          Association Fees: <%= h @property["AssociationFee"] %>
+        </li>
+      </ul>
+    <% else %>
+      <p>Association: No</p>
+    <% end %>
   </div>
 </div>
 <div class='row'>
@@ -42,7 +45,7 @@
 </div>
 <div class='row'>
   <div class='col-md-12'>
-    <p>Special Listing Conditions: <%= "#{property_features(@property["SpecialListingConditions"])}" %></p>
+    <p>Special Listing Conditions: <%= h property_features(@property["SpecialListingConditions"]) %></p>
   </div>
 </div>
 <div class='row'>
