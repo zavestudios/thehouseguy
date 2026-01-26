@@ -1,24 +1,25 @@
 <div class="row">
-  <% @get_homepage_props.each do |p| %>
+  <% @homepage_listings.each do |listing| %>
     <div class="col-md-4">
       <div class="card mb-4 box-shadow">
         <div style="height: 230px; overflow: hidden;">
-          <%= image_tag p["MediaURL"], class: 'card-img-top' %>
+          <% image_url = listing.image_url.presence || "https://via.placeholder.com/600x400?text=Listing" %>
+          <%= image_tag image_url, class: 'card-img-top' %>
         </div>
         <div class="card-body">
-          <h5 class="card-title"><%= number_to_currency(p["ListPrice"], precision: 0) %></h5>
-          <h6 class="card-subtitle mb-2 text-muted"><%= p["StreetNumberNumeric"] +
-            " " + p["StreetDirSuffix"] + " " + p["StreetName"] + " " + p["City"].titleize +
-            ", " + p["StateOrProvince"] %> </h6>
+          <h5 class="card-title"><%= number_to_currency(listing.price, precision: 0) %></h5>
+          <h6 class="card-subtitle mb-2 text-muted">
+            <%= [listing.address_line, listing.city, listing.state].compact.join(", ") %>
+          </h6>
           <ul class="list-inline">
-            <li class="list-inline-item"><%= p["BedroomsTotal"] %> Beds</li>
-            <li class="list-inline-item"><%= p["BathroomsTotalInteger"] %> Baths</li>
-            <li class="list-inline-item"><%= p["LivingArea"] %> Sqft</li>
+            <li class="list-inline-item"><%= listing.beds %> Beds</li>
+            <li class="list-inline-item"><%= listing.baths %> Baths</li>
+            <li class="list-inline-item"><%= listing.sqft %> Sqft</li>
           </ul>
-          <p class="card-text"><%= truncate(p["PublicRemarks"], length: 125) %></p>
+          <p class="card-text">Ames housing sample listing.</p>
           <div class="d-flex justify-content-between align/id-items-center">
             <div class="btn-group">
-              <%= button_to "View", property_path(p["ListingKeyNumeric"]), method: 'get', class: "btn btn-primary" %>
+              <%= button_to "View", "#", method: 'get', class: "btn btn-secondary", disabled: true %>
             </div>
             <small class="text-muted">9 mins</small>
           </div>
