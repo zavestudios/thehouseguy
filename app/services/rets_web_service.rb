@@ -1,22 +1,21 @@
+# frozen_string_literal: true
+
 class RetsWebService
-
   def get_homepage_props
-    return [] if ENV.fetch("USE_RETS", "false").downcase != "true"
+    return [] if ENV.fetch('USE_RETS', 'false').downcase != 'true'
 
-    metadata_cache = Rets::Metadata::FileCache.new("/tmp/metadata")
-    image = ''
+    metadata_cache = Rets::Metadata::FileCache.new('/tmp/metadata')
 
     # Pass the :login_url, :username, :password and :version of RETS
     client = Rets::Client.new({
-      login_url: Rails.application.secrets.rets_login_url,
-      username: Rails.application.secrets.rets_username,
-      password: Rails.application.secrets.rets_password,
-      version: Rails.application.secrets.rets_version,
-      metadata_cache: metadata_cache
-    })
+                                login_url: Rails.application.secrets.rets_login_url,
+                                username: Rails.application.secrets.rets_username,
+                                password: Rails.application.secrets.rets_password,
+                                version: Rails.application.secrets.rets_version,
+                                metadata_cache: metadata_cache
+                              })
 
     begin
-
       client.login
 
       properties = client.find :all, {
@@ -34,22 +33,21 @@ class RetsWebService
           query: "(ResourceRecordKeyNumeric=#{property['ListingKeyNumeric']}),(MediaType=Image)",
           limit: 1
         }
-        property["MediaURL"] = photo["MediaURL"]
+        property['MediaURL'] = photo['MediaURL']
       end
 
       return properties
+    rescue StandardError => e
+      puts "Error: #{e.message}"
+      exit!
+    end
 
-      rescue => e
-        puts 'Error: ' + e.message
-        exit!
-      end
-
-      puts 'We connected! Lets log out...'
-      client.logout
+    puts 'We connected! Lets log out...'
+    client.logout
   end
 end
 
-#def get_principal_photo(keys)
+# def get_principal_photo(keys)
 #  keys.each do |photo|
 #    photos = client.find :all, {
 #    search_type: 'Media',
@@ -57,4 +55,4 @@ end
 #    query: '(ListingKeyNumeric=292664445),(MediaType=Image)',
 #    limit: 3
 #  }
-#end
+# end

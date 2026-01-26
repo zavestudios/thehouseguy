@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module EntriesHelper
   def safe_entry_url(entry)
     raw = entry&.url.to_s

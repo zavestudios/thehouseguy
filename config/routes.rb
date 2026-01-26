@@ -1,13 +1,14 @@
-Rails.application.routes.draw do
+# frozen_string_literal: true
 
+Rails.application.routes.draw do
   get 'signup',   to: 'users#new',        as: 'signup'
   get 'login',    to: 'sessions#new',     as: 'login'
-  delete 'logout',   to: 'sessions#destroy', as: 'logout'
+  delete 'logout', to: 'sessions#destroy', as: 'logout'
 
   resources :sessions
   resources :users
   resources :feeds do
-  	resources :entries, only: [:index, :show]
+    resources :entries, only: %i[index show]
   end
 
   resources :posts do
@@ -15,8 +16,7 @@ Rails.application.routes.draw do
       get 'search'
     end
   end
-  
+
   resources :properties, only: [:show]
   root 'home#index'
-
 end
