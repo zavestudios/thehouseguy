@@ -1,0 +1,21 @@
+name: Lint & Security
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: Lint & Security Checks
+    uses: eckslopez/platform-pipelines/.github/workflows/rails-lint.yml@main
+    with:
+      ruby_version: '3.2'
+      run_rubocop: true
+      run_brakeman: true
+      run_bundler_audit: true
