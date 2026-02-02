@@ -12,5 +12,7 @@ on:
 jobs:
   security:
     name: Security Scan
-    permissions: inherit
+    permissions:
+      contents: read
+      pull-requests: read
     uses: eckslopez/platform-pipelines/.github/workflows/security-scan.yml@main
