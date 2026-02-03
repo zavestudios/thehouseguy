@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Post < ApplicationRecord
-  include PgSearch
+  include PgSearch::Model
 
   # validate :original_image_format
 
