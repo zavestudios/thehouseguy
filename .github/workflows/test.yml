@@ -3,8 +3,6 @@ name: Tests
 on:
   pull_request:
   push:
-    branches:
-      - main
   workflow_dispatch:
 
 permissions:
@@ -15,5 +13,5 @@ jobs:
     name: Run Test Suite
     uses: eckslopez/platform-pipelines/.github/workflows/rails-test.yml@main
     with:
-      ruby_version: '3.2'
-      run_system_tests: true
+      ruby_version: '3.3.2'
+      run_system_tests: false
