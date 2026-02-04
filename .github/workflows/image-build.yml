@@ -1,0 +1,19 @@
+name: Build Image
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build Production Image
+    uses: eckslopez/platform-pipelines/.github/workflows/image-build.yml@main
+    with:
+      context: .
+      dockerfile: production.Dockerfile
+      tags: thehouseguy:ci
