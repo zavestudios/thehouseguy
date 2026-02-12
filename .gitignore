@@ -74,3 +74,5 @@ yarn-debug.log*
 # Ignore VSCode workspace config file
 *.code-workspace
 CLAUDE.md
+
+.DS_Store
