@@ -4,6 +4,12 @@ TheHouseGuy is a Rails app for showcasing listings, blog content, and neighborho
 It is currently being resurrected and modernized (Ruby 3.3 / Rails 8.1) with a Docker-first
 workflow and a provider abstraction for real-estate data sources.
 
+Repository Category: `tenant` (see `platform-docs/_platform/REPO_TAXONOMY.md`)
+
+Documentation authority boundary:
+- This repository documents workload implementation and operations for this tenant.
+- Platform governance, lifecycle, and contract doctrine remain authoritative in `platform-docs/_platform/`.
+
 ## TL;DR
 
 - Run locally with Docker and a Postgres container
