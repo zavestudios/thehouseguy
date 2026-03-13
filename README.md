@@ -27,9 +27,17 @@ This application runs as a tenant on the [ZaveStudios multi-tenant platform](lin
 - Deployment: ArgoCD GitOps via [kubernetes-platform-infrastructure](link)
 - Observability: Shared Prometheus/Grafana
 
-## Quick Start (Docker)
+## Local Development
+
+### Prerequisites
+
+- Docker and Docker Compose
+- Git
+
+### Quick Start
 
 ```sh
+cp .env.example .env
 docker compose build
 docker compose up -d
 
