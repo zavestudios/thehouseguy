@@ -12,8 +12,14 @@ permissions:
 jobs:
   build:
     name: Build Production Image
-    uses: zavestudios/platform-pipelines/.github/workflows/image-build.yml@c0aa80bb405fa24ede5ebcf1c40b0be90328386c
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+    uses: zavestudios/platform-pipelines/.github/workflows/container-build.yml@c0aa80bb405fa24ede5ebcf1c40b0be90328386c
     with:
       context: .
       dockerfile: production.Dockerfile
-      tags: thehouseguy:ci
+      image_name: zavestudios/thehouseguy
+      push: false
+      platforms: linux/amd64
