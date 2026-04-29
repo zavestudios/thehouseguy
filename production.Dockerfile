@@ -2,7 +2,7 @@
 
 ARG RUBY_VERSION=3.3.2
 
-FROM ruby:${RUBY_VERSION}-slim as base
+FROM ruby:${RUBY_VERSION}-slim AS base
 
 WORKDIR /rails
 
@@ -14,7 +14,7 @@ ENV RAILS_ENV=production \
 
 
 # Throw-away build stage to reduce size of final image
-FROM base as build
+FROM base AS build
 
 # Install packages needed to build gems
 # This example intentionally does not require or install node.js
@@ -27,22 +27,23 @@ RUN --mount=type=cache,target=/var/cache/apt \
   apt-get update -qq \
   && apt-get install -yq --no-install-recommends \
     build-essential \
+    git \
     gnupg2 \
     libpq-dev \
     libglib2.0-0 \
     libglib2.0-dev \
     nodejs
 
-RUN gem update --system && gem install bundler
+RUN gem update --system 4.0.5 && gem install bundler -v 4.0.5
 
 # Install application gems
 COPY Gemfile Gemfile.lock ./
 
 # TODO: consolidate bundle config better, currently split between ENV and `bundle config`
-RUN bundle config frozen true \
- && bundle config jobs 4 \
- && bundle config deployment true \
- && bundle config without 'development test' \
+RUN bundle config set --local frozen true \
+ && bundle config set --local jobs 4 \
+ && bundle config set --local deployment true \
+ && bundle config set --local without 'development test' \
  && bundle install \
  && bundle exec bootsnap precompile --gemfile
 
@@ -82,6 +83,7 @@ COPY --from=build /rails /rails
 
 # Run and own only the runtime files as a non-root user for security
 RUN useradd rails --home /rails --shell /bin/bash && \
+    mkdir -p db log storage tmp && \
     chown -R rails:rails db log storage tmp
 USER rails:rails
 
